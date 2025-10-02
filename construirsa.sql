@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 26, 2025 at 02:25 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-10-2025 a las 23:02:21
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `construirsa`
+-- Base de datos: `construirsa`
 --
+CREATE DATABASE IF NOT EXISTS `construirsa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `construirsa`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleado`
+-- Estructura de tabla para la tabla `empleado`
 --
 
 CREATE TABLE `empleado` (
@@ -36,18 +38,18 @@ CREATE TABLE `empleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `empleado`
+-- Volcado de datos para la tabla `empleado`
 --
 
 INSERT INTO `empleado` (`id_empleado`, `nombre`, `apellido`, `acceso`, `estado`) VALUES
 (1, 'Jose', 'Martinez', 1, 1),
-(2, 'Laura', 'Vera', 2, 0),
+(2, 'Laura', 'Vera', 2, 1),
 (3, 'Carlos', 'Zarate', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `herramienta`
+-- Estructura de tabla para la tabla `herramienta`
 --
 
 CREATE TABLE `herramienta` (
@@ -59,7 +61,7 @@ CREATE TABLE `herramienta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `herramienta`
+-- Volcado de datos para la tabla `herramienta`
 --
 
 INSERT INTO `herramienta` (`id_herramienta`, `nombre`, `descripcion`, `stock`, `estado`) VALUES
@@ -72,7 +74,7 @@ INSERT INTO `herramienta` (`id_herramienta`, `nombre`, `descripcion`, `stock`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prestamo`
+-- Estructura de tabla para la tabla `prestamo`
 --
 
 CREATE TABLE `prestamo` (
@@ -84,7 +86,7 @@ CREATE TABLE `prestamo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `prestamo`
+-- Volcado de datos para la tabla `prestamo`
 --
 
 INSERT INTO `prestamo` (`id_prestamo`, `id_empleado`, `id_herramienta`, `fechai`, `fechad`) VALUES
@@ -95,23 +97,23 @@ INSERT INTO `prestamo` (`id_prestamo`, `id_empleado`, `id_herramienta`, `fechai`
 (5, 3, 5, '2025-08-17', '2025-08-22');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `empleado`
+-- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`id_empleado`);
 
 --
--- Indexes for table `herramienta`
+-- Indices de la tabla `herramienta`
 --
 ALTER TABLE `herramienta`
   ADD PRIMARY KEY (`id_herramienta`);
 
 --
--- Indexes for table `prestamo`
+-- Indices de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD PRIMARY KEY (`id_prestamo`),
@@ -119,33 +121,33 @@ ALTER TABLE `prestamo`
   ADD KEY `id_herramienta` (`id_herramienta`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `empleado`
+-- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `herramienta`
+-- AUTO_INCREMENT de la tabla `herramienta`
 --
 ALTER TABLE `herramienta`
   MODIFY `id_herramienta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `prestamo`
+-- AUTO_INCREMENT de la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
   MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `prestamo`
+-- Filtros para la tabla `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`),
